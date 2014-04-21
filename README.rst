@@ -5,8 +5,16 @@ This is our final project for CS 194-16 "Introduction to Data Science" (UC Berke
 
 Our goal is to see if there is a relationship between crime rates in San Francisco and the price of real estate.
 
-Process
-=======
+Data Files
+==========
+In this section, we describe how we generated each file.
+
+``sf-neighborhoods.json``
+--------------------------
+First, extract the ``dbf``, ``shp``, and ``shx`` files from ``ZillowNeighborhoods-CA.zip``.
+Next, run::
+  
+  $ ogr2ogr -f GeoJSON -where 'CITY="San Francisco"' sf-neighborhoods.json ZillowNeighborhoods-CA.shp
 
 Data Sources
 ============
