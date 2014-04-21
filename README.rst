@@ -8,5 +8,13 @@ Our goal is to see if there is a relationship between crime rates in San Francis
 Process
 =======
 
-Data
-====
+Data Sources
+============
+
+* `Zillow Neighborhood Boundaries <http://www.zillow.com/howto/api/neighborhood-boundaries.htm>`_
+
+  * More specifically, we usd the neighborhoods for the city of San Francisco.
+
+* `SFPD Reported Incidents - 2003 to Present <https://data.sfgov.org/Public-Safety/SFPD-Reported-Incidents-2003-to-Present/dyj4-n68b>`_
+
+  * We used the reported incidents from 2013.
