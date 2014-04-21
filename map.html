@@ -10,8 +10,16 @@
 }
 .neighborhood {
     stroke: #003262;
-    fill: #FDB515;
-    fill-opacity: 0.2;
+    stroke-width: 2px;
+    fill: #C2B9A7;
+    fill-opacity: 0.4;
+}
+.neighborhood-label {
+    fill: #53626F;
+    fill-opacity: .6;
+    stroke: #2D637F;
+    stroke-opacity: 0.5;
+    text-anchor: middle;
 }
 </style>
 <body>
@@ -36,13 +44,22 @@ d3.json("sf-neighborhoods.json", function(neighborhoods) {
     var path = d3.geo.path().projection(transform);
 
     var feature = g.selectAll("path")
-                   .data(neighborhoods.features)
-                   .enter()
-                   .append("path")
-                   .attr("class", "neighborhood")
-                   .attr("name", function(d) {
-                       return d.properties.NAME;
-                   });
+        .data(neighborhoods.features)
+        .enter()
+        .append("path")
+        .attr("class", "neighborhood")
+        .attr("name", function(d) {
+            return d.properties.NAME;
+        });
+
+    var label = g.selectAll(".neighborhood-label")
+        .data(neighborhoods.features)
+        .enter()
+        .append("text")
+        .attr("class", "neighborhood-label")
+        .text(function(d) {
+            return d.properties.NAME;
+        });
 
     map.on("viewreset", reset);
     reset();
@@ -61,6 +78,10 @@ d3.json("sf-neighborhoods.json", function(neighborhoods) {
         g.attr("transform", "translate(" + -topLeft[0] + "," + -topLeft[1] + ")");
 
         feature.attr("d", path);
+        label.attr("transform", function(d) {
+            return "translate(" + path.centroid(d) + ")";
+        })
+        .style("font-size", (bottomRight[0] - topLeft[0]) * 0.018 + "px");
     }
 
     // Use Leaflet to implement a D3 geometric transformation.
