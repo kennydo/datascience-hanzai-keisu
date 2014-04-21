@@ -18,3 +18,5 @@ Data Sources
 * `SFPD Reported Incidents - 2003 to Present <https://data.sfgov.org/Public-Safety/SFPD-Reported-Incidents-2003-to-Present/dyj4-n68b>`_
 
   * We used the reported incidents from 2013.
+
+* TODO: add link to page Allen used for Zillow Home Index value
