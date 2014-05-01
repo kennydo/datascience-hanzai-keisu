@@ -1,12 +1,25 @@
 <!DOCTYPE html>
 <meta charset="utf-8" />
 <title>San Francisco Crime & Real Estate</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+<link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap-theme.min.css">
+<script src="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
 <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.2/leaflet.css" />
 <style>
-#map {
-    width: 960px;
-    height: 800px;
+body {
+    padding: 0;
+    margin: 0;
+}
+html, body, .container-fluid, .col-md-6, .row, #map, #detail {
+    height: 100%;
+}
+.col-md-6 {
+    padding: 0;
+}
+#detail {
+    padding: 0 15px;
+    overflow: auto;
 }
 .neighborhood {
     stroke: #003262;
@@ -23,12 +36,28 @@
 <body>
 <script src="http://d3js.org/d3.v3.min.js"></script>
 <script src="http://cdn.leafletjs.com/leaflet-0.7.2/leaflet.js"></script>
-<div id="map"></div>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-6">
+            <div id="map"></div>
+        </div>
+        <div class="col-md-6">
+            <div id="detail">
+                <div class="page-header">
+                    <h1>San Francisco Crime & Real Estate</h1>
+                </div>
+                <p>Click on a neighborhood to see its details!</p>
+                <hr />
+                <p>See source at <a href="https://github.com/kennydo/datascience-hanzai-keisu">GitHub</a>.</p>
+            </div>
+        </div>
+    </div>
+</div>
 <script>
 /*
  * Overlaying SVG on Leaflet based on http://bost.ocks.org/mike/leaflet/
  */
-var map = L.map('map').setView([37.7593, -122.43710], 13);
+var map = L.map('map').setView([37.7593, -122.43710], 12);
 
 L.tileLayer('http://otile1.mqcdn.com/tiles/1.0.0/map/{z}/{x}/{y}.jpg', {
     attribution: 'Tiles Courtesy of <a href="http://www.mapquest.com/" target="_blank">MapQuest</a> <img src="http://developer.mapquest.com/content/osm/mq_logo.png">'
