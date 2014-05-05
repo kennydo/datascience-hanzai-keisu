@@ -16,6 +16,16 @@ Next, run::
   
   $ ogr2ogr -f GeoJSON -where 'CITY="San Francisco"' sf-neighborhoods.json ZillowNeighborhoods-CA.shp
 
+``sfpd_incidents_2013_with_neighborhoods.csv``
+----------------------------------------------
+I ran the following command to get the neighborhoods of SF::
+
+  $ ogr2ogr -where 'CITY="San Francisco"' sfneighborhoods.shp ZillowNeighborhoods-CA.shp
+
+Next, I ran the following to make a new CSV with the neighborhood column::
+
+  $ python make_csv_with_neighborhood.py sfpd_incident_2013.csv sfpd_incidents_2013_with_neighborhoods.csv
+
 Data Sources
 ============
 
