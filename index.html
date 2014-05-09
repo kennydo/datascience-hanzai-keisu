@@ -4,6 +4,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
 <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap-theme.min.css">
+<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
 <script src="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
 <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.2/leaflet.css" />
 <style>
@@ -23,9 +24,15 @@ html, body, .container-fluid, .col-md-6, .row, #map, #detail {
 }
 .neighborhood {
     stroke: #003262;
-    stroke-width: 2px;
+    stroke-width: 1px;
     fill: #C2B9A7;
     fill-opacity: 0.4;
+}
+.selected-neighborhood {
+    stroke: #00FF00;
+    stroke-width: 2px;
+    fill: #00FF00;
+    fill-opacity: 0.6;
 }
 .neighborhood-label {
     fill: #53626F;
@@ -46,7 +53,9 @@ html, body, .container-fluid, .col-md-6, .row, #map, #detail {
                 <div class="page-header">
                     <h1>San Francisco Crime & Real Estate</h1>
                 </div>
-                <p>Click on a neighborhood to see its details!</p>
+                <div id="content">
+                    <p>Click on a neighborhood to see its details!</p>
+                </div>
                 <hr />
                 <p>See source at <a href="https://github.com/kennydo/datascience-hanzai-keisu">GitHub</a>.</p>
             </div>
@@ -116,5 +125,28 @@ d3.json("sf-neighborhoods.json", function(neighborhoods) {
         var point = map.latLngToLayerPoint(new L.LatLng(y, x));
         this.stream.point(point.x, point.y);
     }
+
+    var prev_selected_neighborhood_index = -1;
+    d3.json("sf-incidents.json", function(incidents) {
+        console.log("Loaded incidents");
+        feature
+            .on("click", function(f, i) {
+                if (prev_selected_neighborhood_index != -1){
+                    feature.filter(function(d, j){ return j == prev_selected_neighborhood_index; })
+                        .attr("class", "neighborhood");
+                }
+                var neighborhood_name = f["properties"]["NAME"];
+                feature.filter(function(d, j){ return j == i; })
+                    .attr("class", "neighborhood selected-neighborhood");
+                console.log("Clicked neighborhood: " + neighborhood_name + ", " + i);
+
+                // update the detail pane
+                var detail_content = $("#detail #content");
+                $("#detail .page-header h1").text(neighborhood_name);
+                detail_content.html("");
+
+                prev_selected_neighborhood_index = i;
+            });
+    });
 });
 </script>
