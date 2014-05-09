@@ -35,8 +35,10 @@ html, body, .container-fluid, .col-md-6, .row, #map, #detail {
     fill-opacity: 0.6;
 }
 .neighborhood-label {
-    fill: #53626F;
-    fill-opacity: .8;
+    fill: #2D637F;
+    stroke: #53626F;
+    stroke-width: 1px;
+    fill-opacity: 0.9;
     text-anchor: middle;
 }
 </style>
@@ -148,7 +150,7 @@ d3.json("sf-neighborhoods.json", function(neighborhoods) {
         label.attr("transform", function(d) {
             return "translate(" + path.centroid(d) + ")";
         })
-        .style("font-size", (bottomRight[0] - topLeft[0]) * 0.018 + "px");
+        .style("font-size", (bottomRight[0] - topLeft[0]) * 0.020 + "px");
     }
 
     // Use Leaflet to implement a D3 geometric transformation.
