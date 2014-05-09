@@ -80,9 +80,25 @@ L.tileLayer('http://otile1.mqcdn.com/tiles/1.0.0/map/{z}/{x}/{y}.jpg', {
 var svg = d3.select(map.getPanes().overlayPane).append("svg");
 var g = svg.append("g").attr("class", "leaflet-zoom-hide");
 
+var allow_detail_pane_update = true;
+
 d3.json("sf-neighborhoods.json", function(neighborhoods) {
     var transform = d3.geo.transform({point: projectPoint});
     var path = d3.geo.path().projection(transform);
+
+    /*
+     * While drawing the label text under the feature path does screw up the colors,
+     * it's the simplest way to allow us to also allow clicking on the label text to
+     * select the neighborhood.
+     */
+    var label = g.selectAll(".neighborhood-label")
+        .data(neighborhoods.features)
+        .enter()
+        .append("text")
+        .attr("class", "neighborhood-label")
+        .text(function(d) {
+            return d.properties.NAME;
+        });
 
     var feature = g.selectAll("path")
         .data(neighborhoods.features)
@@ -93,16 +109,26 @@ d3.json("sf-neighborhoods.json", function(neighborhoods) {
             return d.properties.NAME;
         });
 
-    var label = g.selectAll(".neighborhood-label")
-        .data(neighborhoods.features)
-        .enter()
-        .append("text")
-        .attr("class", "neighborhood-label")
-        .text(function(d) {
-            return d.properties.NAME;
-        });
 
     map.on("viewreset", reset);
+
+    /*
+     * We don't want to change the detail pane when the user clicks on the map to drag it around.
+     * Also, we have a timer before re-allowing neighborhood selection because my browser keeps on
+     * selecting the neighborhood immediately after the moveend function is finished.
+     */
+    map.on("movestart", function(){
+        console.log("Disallowing pane updates");
+        allow_detail_pane_update = false;
+    });
+    map.on("moveend", function(){
+        setTimeout(
+            function(){
+                console.log("Now allowing pane updates");
+                allow_detail_pane_update = true;
+            },
+            100);
+    });
     reset();
 
     // Reposition the SVG to cover the features.
@@ -132,13 +158,20 @@ d3.json("sf-neighborhoods.json", function(neighborhoods) {
     }
 
     var prev_selected_neighborhood_index = -1;
+    var category_color_scale = d3.scale.category20b();
+
     d3.json("sf-incidents.json", function(incidents) {
         console.log("Loaded incidents");
         feature
             .on("click", function(f, i) {
+                if (!allow_detail_pane_update){
+                    return;
+                }
                 var neighborhood_name = f["properties"]["NAME"];
                 var neighborhood_data = incidents[neighborhood_name];
                 var incident_counts = neighborhood_data["incident_counts"];
+                var population = Number(neighborhood_data["population"]);
+                var home_value_index = Number(neighborhood_data["home_value_index"]);
 
                 if (prev_selected_neighborhood_index != -1){
                     feature.filter(function(d, j){ return j == prev_selected_neighborhood_index; })
@@ -151,28 +184,50 @@ d3.json("sf-neighborhoods.json", function(neighborhoods) {
                 // update the detail pane
                 var detail_content = $("#detail #content");
                 $("#detail .page-header h1").text(neighborhood_name + " Neighborhood");
-                var population = Number(neighborhood_data["population"]);
-                detail_content.html("<p>Population: " + population.toLocaleString('en') + "</p>"
-                                    + "<div id=\"piechart\"></div>");
+                var html = "<p>Population: " + population.toLocaleString("en") + "</p>";
+                html = html + "<p>Zillow Home Value Index: ";
+                if (home_value_index != 0){
+                    html = html + "$" + home_value_index.toLocaleString("en");
+                } else {
+                    html = html + "Unknown";
+                }
+                html = html + "</p>";
+                html = html + "<div id=\"piechart\"></div>";
+                detail_content.html(html);
 
                 var pie_content = [];
                 for(var category in incident_counts){
                     pie_content.push({
                         "label": capitalize_category(category),
-                        "value": incident_counts[category]
+                        "value": incident_counts[category],
+                        "color": category_color_scale(category)
                     });
                 }
                 var pie = new d3pie("piechart", {
                     "data": {
-                        "sortOrder": "value-desc",
                         "content": pie_content
+                    },
+                    "size": {
+                        "canvasWidth": 580,
+                        "pieOuterRadius": "65%"
                     },
                     "labels": {
                         "outer": {
-                            "format": "label-value2"
+                            "hideWhenLessThanPercentage": 1
                         },
                         "inner": {
-                            "hideWhenLessThanPercentage": 4
+                            "format": "value",
+                            "hideWhenLessThanPercentage": 3
+                        },
+                        "percentage": {
+                            "decimalPlaces": 0
+                        },
+                        "value": {
+                            "color": "#53626F",
+                            "fontSize": 11
+                        },
+                        "lines": {
+                            "enabled": true
                         }
                     },
                     "effects": {
