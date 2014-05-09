@@ -194,7 +194,19 @@ d3.json("sf-neighborhoods.json", function(neighborhoods) {
                     html = html + "Unknown";
                 }
                 html = html + "</p>";
-                html = html + "<div id=\"piechart\"></div>";
+                html = html + '<div class="panel panel-default">\
+                                <div class="panel-heading">Incident Categories</div>\
+                                <div class="panel-body">\
+                                    <div id="piechart"></div>\
+                                    </div>\
+                                    <table id="category-table" class="table">\
+                                        <thead>\
+                                            <th>Category</th>\
+                                            <th>Number of Incidents</th>\
+                                            <th>Percentage</th>\
+                                        </thead>\
+                                    </table>\
+                                </div>';
                 detail_content.html(html);
 
                 var pie_content = [];
@@ -239,6 +251,43 @@ d3.json("sf-neighborhoods.json", function(neighborhoods) {
                     }
                 });
 
+                var total_incidents = 0;
+                var table_data = [];
+                for(var category in incident_counts){
+                    table_data.push({
+                        "category": capitalize_category(category),
+                        "incidents": incident_counts[category]
+                    });
+                    total_incidents = total_incidents + incident_counts[category];
+                }
+                for(var i in table_data){
+                     var percentage = table_data[i]["incidents"] / total_incidents * 100;
+                     table_data[i]["percentage"] = percentage.toFixed(2) + '%';
+                }
+                var table = d3.select("#category-table");
+                var tbody = table.append("tbody");
+                var rows = tbody.selectAll("tr")
+                    .data(table_data)
+                    .enter()
+                    .append("tr");
+
+                var cells = rows.selectAll("tr")
+                    .data(function(row){
+                        return [{"value": row["category"]},
+                                {"value": row["incidents"]},
+                                {"value": row["percentage"]}];
+                    })
+                    .enter()
+                    .append("td")
+                    .text(function(d) {
+                        return d.value;
+                    });
+
+                // lastly, sort the table
+                tbody.selectAll("tr")
+                    .sort(function(a, b) {
+                        return d3.descending(a["incidents"], b["incidents"]);
+                    });
                 prev_selected_neighborhood_index = i;
             });
     });
