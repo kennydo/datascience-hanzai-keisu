@@ -42,6 +42,7 @@ html, body, .container-fluid, .col-md-6, .row, #map, #detail {
 </style>
 <body>
 <script src="http://d3js.org/d3.v3.min.js"></script>
+<script src="d3pie.min.js"></script>
 <script src="http://cdn.leafletjs.com/leaflet-0.7.2/leaflet.js"></script>
 <div class="container-fluid">
     <div class="row">
@@ -63,6 +64,10 @@ html, body, .container-fluid, .col-md-6, .row, #map, #detail {
     </div>
 </div>
 <script>
+function capitalize_category(category){
+    return category.replace(/([A-Z])([A-Z]+)/g, function(match, p1, p2){ return p1 + p2.toLowerCase(); });
+}
+
 /*
  * Overlaying SVG on Leaflet based on http://bost.ocks.org/mike/leaflet/
  */
@@ -133,6 +138,7 @@ d3.json("sf-neighborhoods.json", function(neighborhoods) {
             .on("click", function(f, i) {
                 var neighborhood_name = f["properties"]["NAME"];
                 var neighborhood_data = incidents[neighborhood_name];
+                var incident_counts = neighborhood_data["incident_counts"];
 
                 if (prev_selected_neighborhood_index != -1){
                     feature.filter(function(d, j){ return j == prev_selected_neighborhood_index; })
@@ -146,7 +152,35 @@ d3.json("sf-neighborhoods.json", function(neighborhoods) {
                 var detail_content = $("#detail #content");
                 $("#detail .page-header h1").text(neighborhood_name + " Neighborhood");
                 var population = Number(neighborhood_data["population"]);
-                detail_content.html("<p>Population: " + population.toLocaleString('en') + "</p>");
+                detail_content.html("<p>Population: " + population.toLocaleString('en') + "</p>"
+                                    + "<div id=\"piechart\"></div>");
+
+                var pie_content = [];
+                for(var category in incident_counts){
+                    pie_content.push({
+                        "label": capitalize_category(category),
+                        "value": incident_counts[category]
+                    });
+                }
+                var pie = new d3pie("piechart", {
+                    "data": {
+                        "sortOrder": "value-desc",
+                        "content": pie_content
+                    },
+                    "labels": {
+                        "outer": {
+                            "format": "label-value2"
+                        },
+                        "inner": {
+                            "hideWhenLessThanPercentage": 4
+                        }
+                    },
+                    "effects": {
+                        "load": {
+                            "effect": "none"
+                        }
+                    }
+                });
 
                 prev_selected_neighborhood_index = i;
             });
