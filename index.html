@@ -131,19 +131,22 @@ d3.json("sf-neighborhoods.json", function(neighborhoods) {
         console.log("Loaded incidents");
         feature
             .on("click", function(f, i) {
+                var neighborhood_name = f["properties"]["NAME"];
+                var neighborhood_data = incidents[neighborhood_name];
+
                 if (prev_selected_neighborhood_index != -1){
                     feature.filter(function(d, j){ return j == prev_selected_neighborhood_index; })
                         .attr("class", "neighborhood");
                 }
-                var neighborhood_name = f["properties"]["NAME"];
                 feature.filter(function(d, j){ return j == i; })
                     .attr("class", "neighborhood selected-neighborhood");
                 console.log("Clicked neighborhood: " + neighborhood_name + ", " + i);
 
                 // update the detail pane
                 var detail_content = $("#detail #content");
-                $("#detail .page-header h1").text(neighborhood_name);
-                detail_content.html("");
+                $("#detail .page-header h1").text(neighborhood_name + " Neighborhood");
+                var population = Number(neighborhood_data["population"]);
+                detail_content.html("<p>Population: " + population.toLocaleString('en') + "</p>");
 
                 prev_selected_neighborhood_index = i;
             });
