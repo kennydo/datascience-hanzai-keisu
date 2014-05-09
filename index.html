@@ -167,6 +167,7 @@ d3.json("sf-neighborhoods.json", function(neighborhoods) {
         feature
             .on("click", function(f, i) {
                 if (!allow_detail_pane_update){
+                    console.log("Ignoring click event because of pane_update flag");
                     return;
                 }
                 var neighborhood_name = f["properties"]["NAME"];
@@ -260,9 +261,9 @@ d3.json("sf-neighborhoods.json", function(neighborhoods) {
                     });
                     total_incidents = total_incidents + incident_counts[category];
                 }
-                for(var i in table_data){
-                     var percentage = table_data[i]["incidents"] / total_incidents * 100;
-                     table_data[i]["percentage"] = percentage.toFixed(2) + '%';
+                for(var j in table_data){
+                     var percentage = table_data[j]["incidents"] / total_incidents * 100;
+                     table_data[j]["percentage"] = percentage.toFixed(2) + '%';
                 }
                 var table = d3.select("#category-table");
                 var tbody = table.append("tbody");
@@ -288,6 +289,7 @@ d3.json("sf-neighborhoods.json", function(neighborhoods) {
                     .sort(function(a, b) {
                         return d3.descending(a["incidents"], b["incidents"]);
                     });
+                console.log("Setting previously selected neighborhood index to: " + i);
                 prev_selected_neighborhood_index = i;
             });
     });
