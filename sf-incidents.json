@@ -1,5 +1,6 @@
 {
     "Bayview": {
+        "home_value_index": 406500, 
         "incident_counts": {
             "ARSON": 33, 
             "ASSAULT": 920, 
@@ -36,9 +37,10 @@
             "WARRANTS": 457, 
             "WEAPON LAWS": 187
         }, 
-        "population": 406500
+        "population": 17716
     }, 
     "Bernal Heights": {
+        "home_value_index": 830600, 
         "incident_counts": {
             "ARSON": 5, 
             "ASSAULT": 243, 
@@ -71,9 +73,10 @@
             "WARRANTS": 85, 
             "WEAPON LAWS": 24
         }, 
-        "population": 830600
+        "population": 24430
     }, 
     "Castro-Upper Market": {
+        "home_value_index": null, 
         "incident_counts": {
             "ARSON": 3, 
             "ASSAULT": 359, 
@@ -105,9 +108,10 @@
             "WARRANTS": 261, 
             "WEAPON LAWS": 36
         }, 
-        "population": -1
+        "population": 2631
     }, 
     "Chinatown": {
+        "home_value_index": null, 
         "incident_counts": {
             "ARSON": 3, 
             "ASSAULT": 157, 
@@ -142,9 +146,10 @@
             "WARRANTS": 63, 
             "WEAPON LAWS": 6
         }, 
-        "population": -1
+        "population": 10775
     }, 
     "Crocker Amazon": {
+        "home_value_index": 575900, 
         "incident_counts": {
             "ARSON": 1, 
             "ASSAULT": 50, 
@@ -171,9 +176,10 @@
             "WARRANTS": 15, 
             "WEAPON LAWS": 11
         }, 
-        "population": 575900
+        "population": 9790
     }, 
     "Diamond Heights": {
+        "home_value_index": null, 
         "incident_counts": {
             "ASSAULT": 10, 
             "BURGLARY": 12, 
@@ -195,9 +201,10 @@
             "VEHICLE THEFT": 19, 
             "WARRANTS": 6
         }, 
-        "population": -1
+        "population": 2153
     }, 
     "Downtown": {
+        "home_value_index": 552400, 
         "incident_counts": {
             "ARSON": 34, 
             "ASSAULT": 2060, 
@@ -234,9 +241,10 @@
             "WARRANTS": 1909, 
             "WEAPON LAWS": 207
         }, 
-        "population": 552400
+        "population": 19178
     }, 
     "Excelsior": {
+        "home_value_index": 550500, 
         "incident_counts": {
             "ARSON": 5, 
             "ASSAULT": 260, 
@@ -268,9 +276,10 @@
             "WARRANTS": 82, 
             "WEAPON LAWS": 23
         }, 
-        "population": 550500
+        "population": 25999
     }, 
     "Financial District": {
+        "home_value_index": null, 
         "incident_counts": {
             "ARSON": 11, 
             "ASSAULT": 373, 
@@ -303,9 +312,10 @@
             "WARRANTS": 247, 
             "WEAPON LAWS": 19
         }, 
-        "population": -1
+        "population": 9301
     }, 
     "Glen Park": {
+        "home_value_index": 984000, 
         "incident_counts": {
             "ASSAULT": 36, 
             "BURGLARY": 58, 
@@ -328,9 +338,10 @@
             "WARRANTS": 8, 
             "WEAPON LAWS": 4
         }, 
-        "population": 984000
+        "population": 6066
     }, 
     "Haight-Ashbury": {
+        "home_value_index": 997000, 
         "incident_counts": {
             "ARSON": 5, 
             "ASSAULT": 159, 
@@ -364,9 +375,10 @@
             "WARRANTS": 257, 
             "WEAPON LAWS": 21
         }, 
-        "population": 997000
+        "population": 10523
     }, 
     "Inner Richmond": {
+        "home_value_index": 1210100, 
         "incident_counts": {
             "ARSON": 6, 
             "ASSAULT": 154, 
@@ -399,9 +411,10 @@
             "WARRANTS": 95, 
             "WEAPON LAWS": 15
         }, 
-        "population": 1210100
+        "population": 17074
     }, 
     "Inner Sunset": {
+        "home_value_index": 968200, 
         "incident_counts": {
             "ARSON": 9, 
             "ASSAULT": 91, 
@@ -430,9 +443,10 @@
             "WARRANTS": 40, 
             "WEAPON LAWS": 5
         }, 
-        "population": 968200
+        "population": 37388
     }, 
     "Lakeshore": {
+        "home_value_index": 858900, 
         "incident_counts": {
             "ARSON": 2, 
             "ASSAULT": 102, 
@@ -461,9 +475,10 @@
             "WARRANTS": 45, 
             "WEAPON LAWS": 11
         }, 
-        "population": 858900
+        "population": 1
     }, 
     "Marina": {
+        "home_value_index": 1624900, 
         "incident_counts": {
             "ARSON": 7, 
             "ASSAULT": 161, 
@@ -492,9 +507,10 @@
             "WARRANTS": 76, 
             "WEAPON LAWS": 8
         }, 
-        "population": 1624900
+        "population": 10246
     }, 
     "Mission": {
+        "home_value_index": 828900, 
         "incident_counts": {
             "ARSON": 23, 
             "ASSAULT": 1376, 
@@ -532,9 +548,10 @@
             "WARRANTS": 794, 
             "WEAPON LAWS": 178
         }, 
-        "population": 828900
+        "population": 2874
     }, 
     "Nob Hill": {
+        "home_value_index": 985900, 
         "incident_counts": {
             "ARSON": 3, 
             "ASSAULT": 113, 
@@ -566,9 +583,10 @@
             "WARRANTS": 78, 
             "WEAPON LAWS": 2
         }, 
-        "population": 985900
+        "population": 17900
     }, 
     "Noe Valley": {
+        "home_value_index": 1292700, 
         "incident_counts": {
             "ARSON": 2, 
             "ASSAULT": 67, 
@@ -599,9 +617,10 @@
             "WARRANTS": 21, 
             "WEAPON LAWS": 5
         }, 
-        "population": 1292700
+        "population": 22009
     }, 
     "North Beach": {
+        "home_value_index": 856200, 
         "incident_counts": {
             "ARSON": 3, 
             "ASSAULT": 194, 
@@ -632,9 +651,10 @@
             "WARRANTS": 80, 
             "WEAPON LAWS": 21
         }, 
-        "population": 856200
+        "population": 17675
     }, 
     "Ocean View": {
+        "home_value_index": null, 
         "incident_counts": {
             "ARSON": 6, 
             "ASSAULT": 167, 
@@ -666,9 +686,10 @@
             "WARRANTS": 63, 
             "WEAPON LAWS": 19
         }, 
-        "population": -1
+        "population": 6271
     }, 
     "Outer Mission": {
+        "home_value_index": 569500, 
         "incident_counts": {
             "ARSON": 4, 
             "ASSAULT": 272, 
@@ -705,9 +726,10 @@
             "WARRANTS": 158, 
             "WEAPON LAWS": 39
         }, 
-        "population": 569500
+        "population": 9328
     }, 
     "Outer Richmond": {
+        "home_value_index": 787600, 
         "incident_counts": {
             "ARSON": 4, 
             "ASSAULT": 138, 
@@ -739,9 +761,10 @@
             "WARRANTS": 44, 
             "WEAPON LAWS": 9
         }, 
-        "population": 787600
+        "population": 16821
     }, 
     "Outer Sunset": {
+        "home_value_index": 695800, 
         "incident_counts": {
             "ARSON": 6, 
             "ASSAULT": 143, 
@@ -774,9 +797,10 @@
             "WARRANTS": 47, 
             "WEAPON LAWS": 9
         }, 
-        "population": 695800
+        "population": 74129
     }, 
     "Pacific Heights": {
+        "home_value_index": 1413900, 
         "incident_counts": {
             "ASSAULT": 65, 
             "BAD CHECKS": 1, 
@@ -806,9 +830,10 @@
             "WARRANTS": 29, 
             "WEAPON LAWS": 4
         }, 
-        "population": 1413900
+        "population": 10747
     }, 
     "Parkside": {
+        "home_value_index": 783100, 
         "incident_counts": {
             "ARSON": 3, 
             "ASSAULT": 100, 
@@ -839,9 +864,10 @@
             "WARRANTS": 30, 
             "WEAPON LAWS": 8
         }, 
-        "population": 783100
+        "population": 19871
     }, 
     "Potrero Hill": {
+        "home_value_index": 844400, 
         "incident_counts": {
             "ARSON": 5, 
             "ASSAULT": 172, 
@@ -875,9 +901,10 @@
             "WARRANTS": 88, 
             "WEAPON LAWS": 37
         }, 
-        "population": 844400
+        "population": 13725
     }, 
     "Presidio Heights": {
+        "home_value_index": 3890600, 
         "incident_counts": {
             "ARSON": 1, 
             "ASSAULT": 24, 
@@ -902,9 +929,10 @@
             "WARRANTS": 11, 
             "WEAPON LAWS": 1
         }, 
-        "population": 3890600
+        "population": 4091
     }, 
     "Russian Hill": {
+        "home_value_index": 1150900, 
         "incident_counts": {
             "ASSAULT": 139, 
             "BAD CHECKS": 2, 
@@ -936,9 +964,10 @@
             "WARRANTS": 66, 
             "WEAPON LAWS": 8
         }, 
-        "population": 1150900
+        "population": 12967
     }, 
     "Seacliff": {
+        "home_value_index": null, 
         "incident_counts": {
             "ARSON": 1, 
             "ASSAULT": 3, 
@@ -955,9 +984,10 @@
             "VANDALISM": 9, 
             "VEHICLE THEFT": 12
         }, 
-        "population": -1
+        "population": 829
     }, 
     "South Of Market": {
+        "home_value_index": 665600, 
         "incident_counts": {
             "ARSON": 23, 
             "ASSAULT": 1233, 
@@ -994,9 +1024,10 @@
             "WARRANTS": 1285, 
             "WEAPON LAWS": 126
         }, 
-        "population": 665600
+        "population": 11130
     }, 
     "Twin Peaks": {
+        "home_value_index": 865000, 
         "incident_counts": {
             "ARSON": 1, 
             "ASSAULT": 26, 
@@ -1022,9 +1053,10 @@
             "WARRANTS": 11, 
             "WEAPON LAWS": 1
         }, 
-        "population": 865000
+        "population": 3859
     }, 
     "Visitacion Valley": {
+        "home_value_index": 493000, 
         "incident_counts": {
             "ARSON": 3, 
             "ASSAULT": 263, 
@@ -1055,9 +1087,10 @@
             "WARRANTS": 85, 
             "WEAPON LAWS": 29
         }, 
-        "population": 493000
+        "population": 23054
     }, 
     "West Of Twin Peaks": {
+        "home_value_index": null, 
         "incident_counts": {
             "ARSON": 1, 
             "ASSAULT": 105, 
@@ -1090,9 +1123,10 @@
             "WARRANTS": 36, 
             "WEAPON LAWS": 1
         }, 
-        "population": -1
+        "population": 4961
     }, 
     "Western Addition": {
+        "home_value_index": 674000, 
         "incident_counts": {
             "ARSON": 12, 
             "ASSAULT": 540, 
@@ -1126,6 +1160,6 @@
             "WARRANTS": 293, 
             "WEAPON LAWS": 78
         }, 
-        "population": 674000
+        "population": 11981
     }
 }
